@@ -1,0 +1,9 @@
+{
+  "firebase": "mc-test-angular2",
+  "public": "dist",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}
