@@ -4,7 +4,7 @@
   "license": "MIT",
   "angular-cli": {},
   "scripts": {
-    "start": "ng server --environment=prod",
+    "start": "ng server",
     "build-prod": "ng build --environment=prod",
     "postinstall": "typings install",
     "lint": "tslint \"src/**/*.ts\"",

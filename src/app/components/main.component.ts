@@ -4,6 +4,7 @@ import { RouteConfig, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
 import { TextItem } from './text-item.component';
 import { Card } from './card.component';
 import { Home } from './home.component';
+import { CreateRoom } from './create-room.component';
 
 
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
@@ -23,7 +24,7 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
     useAsDefault: true
   },
 
-  {path: '/Login',   name: 'Login',     component: TextItem},
+  {path: '/CreateRoom',   name: 'CreateRoom',     component: CreateRoom},
   {path: '/Poker/:roomId', name: 'Poker', component: TextItem}
 ])
 export class MainComponent {

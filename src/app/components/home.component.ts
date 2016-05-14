@@ -26,7 +26,7 @@ export class Home {
   }
   
   goToLogin() {
-      this.router.navigate(['Login',  {foo: 'foo'} ]);  
+      this.router.navigate(['CreateRoom']);  
   }
   
   add(newName) {
