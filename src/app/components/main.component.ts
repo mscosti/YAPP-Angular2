@@ -1,28 +1,33 @@
 import { Component } from '@angular/core';
 import { Control } from '@angular/common';
+import { RouteConfig, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
 import { TextItem } from './text-item.component';
+import { Card } from './card.component';
+import { Home } from './home.component';
+
+
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 
 @Component({
   moduleId: module.id,
   selector: 'yapp',
-  directives: [TextItem],
+  directives: [TextItem,ROUTER_DIRECTIVES],
   templateUrl: '../views/main.component.html',
-  styleUrls: ['../styles/yapp.css']
+  styleUrls: [ '../styles/yapp.css']
 })
+@RouteConfig([
+  { 
+    path: '/Home',
+    name: 'Home',
+    component: Home,
+    useAsDefault: true
+  },
+
+  {path: '/Login',   name: 'Login',     component: TextItem},
+  {path: '/Poker/:roomId', name: 'Poker', component: TextItem}
+])
 export class MainComponent {
   title = 'Yet Another Planning Poker';
-  term = new Control();
-  items: FirebaseListObservable<any[]>;
   
-  constructor(af: AngularFire){
-    this.items = af.database.list('/items');
-    this.items.subscribe(object => console.log(object));
-  }
-  add(newName) {
-    this.items.push({ text: newName });
-  }
-  deleteEverything() {
-    this.items.remove();
-  }
+  constructor(){ }
 }
