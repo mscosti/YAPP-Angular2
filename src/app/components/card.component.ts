@@ -6,13 +6,12 @@ import 'rxjs/add/operator/debounceTime';
 @Component({
   moduleId: module.id,
   selector: 'card-item',
-  templateUrl: '../views/card.component.html',
+  template: '<button type="button" class="card btn btn-default"> {{ value }}</button>',
   styleUrls: ['../styles/yapp.css']
 })
 export class Card {
-  value;
+  @Input() value;
   
   constructor(){
-    this.value = 1
   }
 }
