@@ -4,13 +4,14 @@ import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'a
 import { RouteParams, Router } from '@angular/router-deprecated';
 import { Observable } from 'rxjs';
 import { CardHand } from './card-hand.component';
+import { Card } from './card.component';
 // import { Http, Response, Headers } from '@angular/http';
 import 'rxjs/add/operator/debounceTime';
 
 @Component({
   moduleId: module.id,
   selector: 'poker-room',
-  directives: [CardHand],
+  directives: [CardHand, Card],
   templateUrl: '../views/poker-room.component.html',
   styleUrls: ['../styles/yapp.css']
 })

@@ -1,6 +1,11 @@
 .card{
     height: 125px;
     width: 9.6%;
+    /*display: block;*/
+}
+
+.usernameCard{
+    display: inline-block;
 }
 
 .element{

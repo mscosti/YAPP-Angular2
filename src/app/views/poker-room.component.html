@@ -5,7 +5,13 @@
          <div class="well">
           <div class="center-block">
               <h3> Let the voting Commence! </h3>
-              
+              <span>
+                  <span *ngFor="let vote of currentVotes | async">
+                      {{vote.username}}
+                    <card-item [value]="vote.vote" (click)="selectCard(cardValue);"></card-item>
+                    <!--<span class="usernameCard"> {{ vote.username }}  </span>-->
+                  </span>
+                </span>
           </div>
         </div>
       </div>
