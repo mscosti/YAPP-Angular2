@@ -2,12 +2,20 @@
   <div class="col-md-6 col-md-offset-3">
       <div class="well">
           <div class="center-block">
+              <h3> First lets collect all the tickets you want to estimate today </h3>
               <div *ngFor="let ticket of tickets" class="form-group">
-                <label for="Ticket">Ticket ID</label>
+                <label for="Ticket">Ticket ID/Name</label>
                 <input type="text" class="form-control" [(ngModel)]="ticket.name" (ngModelChange)="saveTicket(ticket)"/>
               </div>
-              <button (click)="createEmptyTicket()"> Add Another </button>
-              <button (click)="submit()"> Submit </button>
+              <div class="row center-block">
+                <button (click)="createEmptyTicket()"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
+                <button class="pull-right"(click)="submit()">  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
+              </div>
+              <br/>
+              <div class="row center-block">
+                <input type="text" disabled class="pull-right text-center" value="{{roomId}}"/>
+                <div class="pull-right"> Room link <span class="glyphicon glyphicon-link" aria-hidden="true"></span>: </div>
+              </div>
           </div>
       </div>
   </div>

@@ -1,6 +1,7 @@
 import { Component, Input} from '@angular/core';
 import { Control } from '@angular/common';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import { RouteParams, Router } from '@angular/router-deprecated';
 // import { Http, Response, Headers } from '@angular/http';
 import 'rxjs/add/operator/debounceTime';
 
@@ -14,11 +15,13 @@ export class CreateRoom {
   roomsDB: FirebaseListObservable<any>;
   ticketsDB: FirebaseListObservable<any>;
   tickets: any[]
-  constructor(af: AngularFire){
+  constructor(af: AngularFire,
+            private router:Router,
+            private routeParams:RouteParams){
     this.roomId = this.ID();
     this.roomsDB = af.database.list('/rooms');
     this.ticketsDB = af.database.list('/tickets');
-    this.tickets = [];
+    this.tickets = [{name: "", room: this.roomId}];
   }
   
   createEmptyTicket() {
@@ -35,6 +38,7 @@ export class CreateRoom {
     this.tickets.forEach(ticket => {
       this.ticketsDB.push(ticket);
     });
+    this.router.navigate(['Poker',{ roomId: this.roomId}]);
   }
   
   ID() {
