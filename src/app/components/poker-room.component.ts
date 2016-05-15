@@ -19,10 +19,12 @@ export class PokerRoom {
   roomDB: FirebaseObjectObservable<any>;
   currentTicket: FirebaseObjectObservable<any>;
   currentVotes: FirebaseListObservable<any>;
+  votingStatus: FirebaseObjectObservable<any>;
   roomId: string;
   tickets: any[] = [];
   
-  isAdmin = false;
+  votingActive = false;
+  isAdmin = null;
   userKey = null;
   username = null;
   
@@ -32,19 +34,20 @@ export class PokerRoom {
     
     this.roomId = this.routeParams.get('roomId');
     this.username = this.routeParams.get('username');
+    this.isAdmin = this.routeParams.get('adminKey');
     
     this.roomDB = af.database.object(`/room/${this.roomId}`);
     this.currentTicket = af.database.object(`/room/${this.roomId}/currentTicket`);
     this.currentVotes = af.database.list(`/room/${this.roomId}/currentVotes`);
-    // good job matt, we're only at step two and your data structure already
-    // turned out to not be ideal.....
-    af.database.list('/tickets').forEach(tix => {
-        tix.forEach( ticket => {
-            if (ticket.room === this.roomId) {
-                this.tickets.push(ticket);
-            }
-        })
-    });
+    this.votingStatus = af.database.object(`/room/${this.roomId}/votingActive`);
+    this.votingStatus.subscribe(status => {
+        this.votingActive = status;
+        console.log(status);        
+    })
+  }
+  
+  endRound(event) {
+      this.votingStatus.set(true);
   }
   
   onCardSelect(event) {

@@ -52,7 +52,8 @@ export class CreateRoom {
     });
     this.roomDB.update({
       admin: adminKey,
-      currentTicket: firstTicket
+      currentTicket: firstTicket,
+      votingActive: true
     });
     this.router.navigate(['Poker',{ roomId: this.roomId, username: this.username, adminKey: adminKey}]);
   }

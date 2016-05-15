@@ -4,12 +4,20 @@
       <div class="row ">
          <div class="well">
           <div class="center-block">
-              <h3> Let the voting Commence! </h3>
-              <span>
+              <div class="row">
+                  <strong> Let the voting Commence! </strong>
+                    <button [style.display]="isAdmin?'inherit':'none'" type="button" class="btn btn-default pull-right"> Done Voting</button>
+              </div>
+              <span *ngIf="votingActive">
                   <span *ngFor="let vote of currentVotes | async">
                       {{vote.username}}
                     <card-item [value]="vote.vote" (click)="selectCard(cardValue);"></card-item>
-                    <!--<span class="usernameCard"> {{ vote.username }}  </span>-->
+                  </span>
+                </span>
+              <span *ngIf="!votingActive">
+                  <span *ngFor="let vote of currentVotes | async">
+                      {{vote.username}}
+                    <card-item [value]="" (click)="selectCard(cardValue);"></card-item>
                   </span>
                 </span>
           </div>
@@ -20,7 +28,7 @@
       </div>
   </div>
   <div class="element col-md-2 well">
-      
+      <h3> Technically Usernames should go here! :D </h3>
   </div>
 </div>
 </div>
