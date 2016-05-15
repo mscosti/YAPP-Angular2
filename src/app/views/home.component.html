@@ -3,13 +3,3 @@
     <h3>Integrates with Jira! (Not yet....)</h3>
     <p><a class="btn btn-primary btn-lg" role="button" (click)="goToLogin()">Get Started</a></p>
 </div>
-
-<ul *ngFor="let item of items | async">
-    <li class="text">
-      {{ item.text }}
-      <text-item [items]="items" [key]="item.$key"></text-item>
-    </li>
-  </ul>
-<input type="text" #newitem />
-<button (click)="add(newitem.value)">Add</button>
-<button (click)="deleteEverything()">Delete All</button>
