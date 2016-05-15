@@ -1,6 +1,6 @@
 import { Component, Input} from '@angular/core';
 import { Control } from '@angular/common';
-import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 import { RouteParams, Router } from '@angular/router-deprecated';
 import { Observable } from 'rxjs';
 import { CardHand } from './card-hand.component';
@@ -15,14 +15,26 @@ import 'rxjs/add/operator/debounceTime';
   styleUrls: ['../styles/yapp.css']
 })
 export class PokerRoom {
+  roomDB: FirebaseObjectObservable<any>;
+  currentTicket: FirebaseObjectObservable<any>;
+  currentVotes: FirebaseListObservable<any>;
   roomId: string;
   tickets: any[] = [];
+  
+  isAdmin = false;
+  userKey = null;
+  username = null;
+  
   constructor(af: AngularFire,
             private router:Router,
             private routeParams:RouteParams){
     
     this.roomId = this.routeParams.get('roomId');
-
+    this.username = this.routeParams.get('username');
+    
+    this.roomDB = af.database.object(`/room/${this.roomId}`);
+    this.currentTicket = af.database.object(`/room/${this.roomId}/currentTicket`);
+    this.currentVotes = af.database.list(`/room/${this.roomId}/currentVotes`);
     // good job matt, we're only at step two and your data structure already
     // turned out to not be ideal.....
     af.database.list('/tickets').forEach(tix => {
@@ -34,25 +46,9 @@ export class PokerRoom {
     });
   }
   
-  createEmptyTicket() {
-    // this.tickets.push({name: "", room: this.roomId});
-  }
-  
-  // TODO: figure out smarter way to sync ticketsDB instead of one big submit
-  saveTicket(ticket) {
-    console.log('hey');
-  }
-  
-  submit() {
-    // this.roomsDB.push(this.roomId);
-    this.tickets.forEach(ticket => {
-    //   this.ticketsDB.push(ticket);
-    });
-    this.router.navigate(['Poker',{ roomId: this.roomId}]);
-  }
-  
   onCardSelect(event) {
-      console.log("YOOOOOOO")
+      console.log("YOOOOOOO");
       console.log(event);
+      
   }
 }

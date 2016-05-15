@@ -42,7 +42,6 @@ export class CreateRoom {
   
   // TODO: Learn AngularFire2 / Firebase...... 
   submit() {
-    // var key = this.roomsDB.push(this.roomId).key();
     var adminKey = this.roomUsersDB.push({name: this.username}).key();
     var firstTicket = null;
     this.tickets.forEach(ticket => {
@@ -55,7 +54,7 @@ export class CreateRoom {
       admin: adminKey,
       currentTicket: firstTicket
     });
-    this.router.navigate(['Poker',{ roomId: this.roomId}]);
+    this.router.navigate(['Poker',{ roomId: this.roomId, username: this.username, adminKey: adminKey}]);
   }
   
   ID() {

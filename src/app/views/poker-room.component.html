@@ -10,7 +10,7 @@
         </div>
       </div>
       <div class="row well">
-          <card-hand (^selectedCardChanged)="onCardSelect($event);"></card-hand>
+          <card-hand (^selectedCardChanged)="onCardSelect($event);" [username]="username" [roomId]="roomId"></card-hand>
       </div>
   </div>
   <div class="element col-md-2 well">
