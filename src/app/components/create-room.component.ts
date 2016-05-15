@@ -1,7 +1,8 @@
 import { Component, Input} from '@angular/core';
 import { Control } from '@angular/common';
-import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import { AngularFire, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2';
 import { RouteParams, Router } from '@angular/router-deprecated';
+import { Observable } from 'rxjs';
 // import { Http, Response, Headers } from '@angular/http';
 import 'rxjs/add/operator/debounceTime';
 
@@ -12,15 +13,21 @@ import 'rxjs/add/operator/debounceTime';
 })
 export class CreateRoom {
   roomId: string;
+  roomDB: FirebaseObjectObservable<any>;
   roomsDB: FirebaseListObservable<any>;
+  roomUsersDB: FirebaseListObservable<any>;
   ticketsDB: FirebaseListObservable<any>;
-  tickets: any[]
+  tickets: any[];
+  username: string;
   constructor(af: AngularFire,
             private router:Router,
             private routeParams:RouteParams){
+              
     this.roomId = this.ID();
+    this.roomDB = af.database.object(`/room/${this.roomId}`);
+    this.roomUsersDB = af.database.list(`/room/${this.roomId}/users`)
     this.roomsDB = af.database.list('/rooms');
-    this.ticketsDB = af.database.list('/tickets');
+    this.ticketsDB = af.database.list(`/room/${this.roomId}/tickets`);
     this.tickets = [{name: "", room: this.roomId}];
   }
   
@@ -33,10 +40,20 @@ export class CreateRoom {
     console.log('hey');
   }
   
+  // TODO: Learn AngularFire2 / Firebase...... 
   submit() {
-    this.roomsDB.push(this.roomId);
+    // var key = this.roomsDB.push(this.roomId).key();
+    var adminKey = this.roomUsersDB.push({name: this.username}).key();
+    var firstTicket = null;
     this.tickets.forEach(ticket => {
-      this.ticketsDB.push(ticket);
+      var key = this.ticketsDB.push(ticket).key();
+      if (!firstTicket) {
+        firstTicket = key;
+      }
+    });
+    this.roomDB.update({
+      admin: adminKey,
+      currentTicket: firstTicket
     });
     this.router.navigate(['Poker',{ roomId: this.roomId}]);
   }

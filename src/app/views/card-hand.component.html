@@ -1,5 +1,5 @@
 <div>
     <span *ngFor="let cardValue of availableCards">
-        <card-item [value]="cardValue"></card-item>
+        <card-item [value]="cardValue" (click)="selectCard(cardValue);"></card-item>
     </span>
 </div>

@@ -50,4 +50,9 @@ export class PokerRoom {
     });
     this.router.navigate(['Poker',{ roomId: this.roomId}]);
   }
+  
+  onCardSelect(event) {
+      console.log("YOOOOOOO")
+      console.log(event);
+  }
 }
