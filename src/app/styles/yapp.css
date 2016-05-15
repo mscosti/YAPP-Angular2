@@ -1,3 +1,14 @@
 .card{
-    background-color: blue;
+    height: 125px;
+    width: 10%;
+}
+
+.element{
+    padding:20px;
+    margin-bottom: -99999px;
+    padding-bottom: 99999px;
+}
+
+.equal{
+    overflow: hidden; 
 }

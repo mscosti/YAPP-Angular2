@@ -5,13 +5,14 @@ import 'rxjs/add/operator/debounceTime';
 
 @Component({
   moduleId: module.id,
-  selector: 'text-item',
-  templateUrl: '../views/card.component.html'
+  selector: 'card-item',
+  templateUrl: '../views/card.component.html',
+  styleUrls: ['../styles/yapp.css']
 })
 export class Card {
   value;
   
   constructor(){
-    this.value = Math.random;
+    this.value = 1
   }
 }

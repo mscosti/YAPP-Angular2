@@ -8,8 +8,8 @@
                 <input type="text" class="form-control" [(ngModel)]="ticket.name" (ngModelChange)="saveTicket(ticket)"/>
               </div>
               <div class="row center-block">
-                <button (click)="createEmptyTicket()"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
-                <button class="pull-right"(click)="submit()">  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
+                <button class="btn btn-success" (click)="createEmptyTicket()"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
+                <button class="pull-right btn btn-success"(click)="submit()">  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
               </div>
               <br/>
               <div class="row center-block">

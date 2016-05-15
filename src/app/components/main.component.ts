@@ -5,6 +5,7 @@ import { TextItem } from './text-item.component';
 import { Card } from './card.component';
 import { Home } from './home.component';
 import { CreateRoom } from './create-room.component';
+import { PokerRoom } from './poker-room.component';
 
 
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
@@ -25,7 +26,7 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
   },
 
   {path: '/CreateRoom',   name: 'CreateRoom',     component: CreateRoom},
-  {path: '/Poker/:roomId', name: 'Poker', component: TextItem}
+  {path: '/Poker/:roomId', name: 'Poker', component: PokerRoom}
 ])
 export class MainComponent {
   title = 'Yet Another Planning Poker';
