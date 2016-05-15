@@ -47,7 +47,7 @@ export class PokerRoom {
   }
   
   endRound(event) {
-      this.votingStatus.set(true);
+      this.votingStatus.set(false);
   }
   
   onCardSelect(event) {

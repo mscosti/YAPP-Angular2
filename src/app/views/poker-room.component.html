@@ -6,15 +6,15 @@
           <div class="center-block">
               <div class="row">
                   <strong> Let the voting Commence! </strong>
-                    <button [style.display]="isAdmin?'inherit':'none'" type="button" class="btn btn-default pull-right"> Done Voting</button>
+                    <button [style.display]="isAdmin?'inherit':'none'" type="button" class="btn btn-default pull-right" (click)="endRound($event)"> Done Voting</button>
               </div>
-              <span *ngIf="votingActive">
+              <span *ngIf="!votingActive">
                   <span *ngFor="let vote of currentVotes | async">
                       {{vote.username}}
                     <card-item [value]="vote.vote" (click)="selectCard(cardValue);"></card-item>
                   </span>
                 </span>
-              <span *ngIf="!votingActive">
+              <span *ngIf="votingActive">
                   <span *ngFor="let vote of currentVotes | async">
                       {{vote.username}}
                     <card-item [value]="" (click)="selectCard(cardValue);"></card-item>
