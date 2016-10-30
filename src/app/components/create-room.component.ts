@@ -17,6 +17,7 @@ export class CreateRoom {
   roomsDB: FirebaseListObservable<any>;
   roomUsersDB: FirebaseListObservable<any>;
   ticketsDB: FirebaseListObservable<any>;
+  currentTicket: any;
   tickets: any[];
   username: string;
   constructor(af: AngularFire,
@@ -29,6 +30,7 @@ export class CreateRoom {
     this.roomsDB = af.database.list('/rooms');
     this.ticketsDB = af.database.list(`/room/${this.roomId}/tickets`);
     this.tickets = [{name: "", room: this.roomId}];
+    this.currentTicket = {name: "", room: this.roomId};
   }
   
   createEmptyTicket() {
@@ -37,7 +39,9 @@ export class CreateRoom {
   
   // TODO: figure out smarter way to sync ticketsDB instead of one big submit
   saveTicket(ticket) {
-    console.log('hey');
+    this.tickets.push(ticket);
+    this.currentTicket = {name: "", room: this.roomId};
+    console.log(ticket);
   }
   
   // TODO: Learn AngularFire2 / Firebase...... 

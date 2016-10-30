@@ -1,8 +1,8 @@
-<div class="containter-fluid">
+<!--<div class="containter-fluid">-->
 <div class="row equal">
-  <div class="element col-md-8 col-md-offset-1">
+  <div class="element col s8 offset-s1">
       <div class="row ">
-         <div class="well">
+         <div class="card-panel">
           <div class="center-block">
               <div class="row">
                   <strong> Let the voting Commence! </strong>
@@ -23,12 +23,12 @@
           </div>
         </div>
       </div>
-      <div class="row well">
+      <div class="row card-panel">
           <card-hand (^selectedCardChanged)="onCardSelect($event);" [username]="username" [roomId]="roomId"></card-hand>
       </div>
   </div>
-  <div class="element col-md-2 well">
+  <!--<div class="element col s2 card-panel">
       <h3> Technically Usernames should go here! :D </h3>
-  </div>
+  </div>-->
 </div>
-</div>
+<!--</div>-->

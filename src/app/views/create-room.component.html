@@ -1,24 +1,30 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-      <div class="well form-group">
+      <h4> Room Setup </h4>
+      <div class="card-panel form-group">
         <label for="UserName">UserName (Creator)</label>
         <input type="text" class="form-control" [(ngModel)]="username"/>
       </div>
-      <div class="well">
+      <div class="card-panel">
+        <label for="Ticket">Ticket ID/Name</label>
+        <input type="text" [(ngModel)]="currentTicket.name" class="form-control"/>
+        <button class="btn btn-success" (click)="saveTicket(currentTicket)"> <i class="material-icons">add</i></button>
+      </div>
+      <div class="card-panel">
           <div class="center-block">
-              <h3> First lets collect all the tickets you want to estimate today </h3>
+              <h5> First lets collect all the tickets you want to estimate today </h5>
               <div *ngFor="let ticket of tickets" class="form-group">
                 <label for="Ticket">Ticket ID/Name</label>
                 <input type="text" class="form-control" [(ngModel)]="ticket.name" (ngModelChange)="saveTicket(ticket)"/>
               </div>
               <div class="row center-block">
-                <button class="btn btn-success" (click)="createEmptyTicket()"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
-                <button class="pull-right btn btn-success"(click)="submit()">  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
+                <button class="btn btn-success" (click)="createEmptyTicket()"> <i class="material-icons">add</i></button>
+                <button class="right btn btn-success"(click)="submit()">  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> submit</button>
               </div>
               <br/>
               <div class="row center-block">
-                <input type="text" disabled class="pull-right text-center" value="{{roomId}}"/>
-                <div class="pull-right"> Room link <span class="glyphicon glyphicon-link" aria-hidden="true"></span>: </div>
+                <div disabled class="right text-center" value=""> {{roomId}} </div>
+                <div class="right"> Room link: </div>
               </div>
           </div>
       </div>
