@@ -12,14 +12,14 @@ export class TextItem {
   @Input() items: FirebaseListObservable<any[]>;
   @Input() key;
   term = new Control();
-  
+
   constructor(){
     this.term.valueChanges.debounceTime(400).subscribe(term => this.update(term))
   }
   update(newText) {
     this.items.update(this.key, { text: newText });
   }
-  deleteItem() {    
-    this.items.remove(this.key); 
+  deleteItem() {
+    this.items.remove(this.key);
   }
 }

@@ -17,18 +17,18 @@ export class Home {
   title = 'Yet Another Planning Poker';
   term = new Control();
   items: FirebaseListObservable<any[]>;
-  
-  constructor(af: AngularFire, 
+
+  constructor(af: AngularFire,
         private router:Router,
         private routeParams:RouteParams){
     this.items = af.database.list('/items');
     this.items.subscribe(object => console.log(object));
   }
-  
+
   goToLogin() {
-      this.router.navigate(['CreateRoom']);  
+      this.router.navigate(['CreateRoom']);
   }
-  
+
   add(newName) {
     this.items.push({ text: newName });
   }
