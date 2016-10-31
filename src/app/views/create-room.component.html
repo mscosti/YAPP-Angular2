@@ -15,7 +15,7 @@
               <h5> First lets collect all the tickets you want to estimate today </h5>
               <div *ngFor="let ticket of tickets" class="form-group">
                 <label for="Ticket">Ticket ID/Name</label>
-                <input type="text" class="form-control" [(ngModel)]="ticket.name" (ngModelChange)="saveTicket(ticket)"/>
+                <input type="text" class="form-control" [(ngModel)]="ticket.name"/>
               </div>
               <div class="row center-block">
                 <button class="btn btn-success" (click)="createEmptyTicket()"> <i class="material-icons">add</i></button>
