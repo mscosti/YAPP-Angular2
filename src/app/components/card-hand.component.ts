@@ -17,19 +17,19 @@ export class CardHand implements OnInit{
   @Input() roomId;
   @Input() username;
   availableCards;
-  
+
   userVoteKey = null;
   currentVotes: FirebaseListObservable<any>
   constructor(private af: AngularFire){
     //   this.currentVotes = af.database.list(`/room/${this.roomId}/currentVotes`);
     //   this.availableCards = availableCards;
   }
-  
+
   ngOnInit(){
       this.currentVotes = this.af.database.list(`/room/${this.roomId}/currentVotes`);
       this.availableCards = availableCards;
   }
-  
+
   selectCard(value){
       if (this.userVoteKey) {
           this.currentVotes.update(this.userVoteKey,{username: this.username, vote: value });

@@ -11,7 +11,7 @@ import 'rxjs/add/operator/debounceTime';
 })
 export class Card {
   @Input() value;
-  
+
   constructor(){
   }
 }

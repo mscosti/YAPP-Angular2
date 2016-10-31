@@ -18,7 +18,7 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
   styleUrls: [ '../styles/yapp.css']
 })
 @RouteConfig([
-  { 
+  {
     path: '/Home',
     name: 'Home',
     component: Home,
@@ -30,6 +30,6 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
 ])
 export class MainComponent {
   title = 'Yet Another Planning Poker';
-  
+
   constructor(){ }
 }
